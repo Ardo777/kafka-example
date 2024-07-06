@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Reviews</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .review-card {
+            margin-bottom: 20px;
+        }
+        .review-content {
+            font-size: 16px;
+            color: #333;
+        }
+        .review-date {
+            font-size: 14px;
+            color: #999;
+            text-align: right;
+        }
+        .form-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">Reviews</h1>
+    <div id="reviews">
+        <div th:each="review : ${reviews}" class="card review-card">
+            <div class="card-body">
+                <p class="review-content" th:text="${review.content != null ? review.content : 'No content'}">Review Content</p>
+            </div>
+        </div>
+    </div>
+    <form action="/sendMessage" method="post">
+        <div class="form-container">
+            <div class="input-group">
+                <textarea id="messageContent" name="content" class="form-control" placeholder="Enter your message..." rows="3" required></textarea>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
